@@ -6,8 +6,8 @@ static const unsigned int gappx     = 8;	/* gaps size between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12" };
-static const char dmenufont[]       = "monospace:size=11";
+static const char *fonts[]          = { "monospace:size=14" };
+static const char dmenufont[]       = "monospace:size=16";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -73,6 +73,9 @@ static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL 
 /* Print Screen - Flameshot */
 static const char *flameshot[] = { "/usr/bin/flameshot", "gui", NULL };
 
+/* Restart autostart script - kill bar and start autostart */
+static const char *reconf[] = { "killall sbar", "&&", "/home/m4t1/.config/dwm/dwm-autostart.sh", NULL };
+
 #include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"
 static Key keys[] = {
@@ -120,6 +123,7 @@ static Key keys[] = {
 	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
 	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
+	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 };
 
 /* button definitions */
