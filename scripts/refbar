@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Refresh bar
+
+kill "$(pstree -lp | grep -- -sbar\([0-9] | sed "s/.*sleep(\([0-9]\+\)).*/\1/")" &>/dev/null
+

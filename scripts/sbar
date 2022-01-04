@@ -1,6 +1,14 @@
 #!/bin/bash
 
-status() {
+separator=""
+
+get_volume() {
+	state=$(awk -F"[][]" '/%/ { print $4 }' <(amixer sget Master) | head -n 1)
+	if [[ "$state" == "on" ]]; then
+		icon=""
+	else
+		icon=""
+	fi
 	volume=$(awk -F"[][]" '/%/ { print $2 }' <(amixer sget Master) | head -n 1)
 	vol_val=$(echo $volume | sed 's/%//g')
 	vol_val=$(($vol_val / 10))	
@@ -14,15 +22,30 @@ status() {
 		fi
 	done
 
-	echo "vol: $volume, $vol_val, [$bar]"
+	echo "$icon $volume [$bar]"
+}
+
+get_network() {
+	is_connected=$(ping -c 1 1.1.1.1 &> /dev/null || echo not)
+	if [[ ! $(echo "$is_connected" | wc -c) -gt 2 ]]; then
+		name=$(nmcli device show | grep GENERAL.CONNECTION | head -n 1)
+		name=($name)
+		name=${name[1]}
+		echo " $name"
+	else
+		echo ""
+	fi
+}
+
+status() {
+	echo "$(get_network) $separator $(get_volume)"
 }
 
 date_info() {
-	echo $(date +%d\ %B\ %Y\ %R:%S)
+	echo $(date +%d\ %B\ \'%y\ %R:%S)
 }
 
 while true; do
-	status
-	# xsetroot -name "---$(status) | $(date_info)---"
+	xsetroot -name " $(status) $separator $(date_info) "
 	sleep 1
 done

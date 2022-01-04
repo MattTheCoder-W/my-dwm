@@ -1,6 +1,8 @@
 #!/bin/bash
 
-scripts="sbar volume.sh"
+sudo echo ">> START"
+
+scripts="sbar volume.sh refbar"
 if [[ ! -d "scripts" ]]; then
 	echo ">> scripts directory not found! pull repo again!"
 	exit 1
