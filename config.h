@@ -62,6 +62,16 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "terminator", NULL };
 static const char *firefox[] = { "firefox", NULL };
 
+/* Volume control */
+// static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+// static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+// static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *upvol[] = { "/usr/local/share/dwm/volume.sh", "up", NULL };
+static const char *downvol[] = { "/usr/local/share/dwm/volume.sh", "down", NULL };
+static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL };
+
+
+#include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -104,6 +114,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
+	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
 };
 
 /* button definitions */

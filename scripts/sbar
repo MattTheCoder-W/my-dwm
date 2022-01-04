@@ -1,0 +1,28 @@
+#!/bin/bash
+
+status() {
+	volume=$(awk -F"[][]" '/%/ { print $2 }' <(amixer sget Master) | head -n 1)
+	vol_val=$(echo $volume | sed 's/%//g')
+	vol_val=$(($vol_val / 10))	
+
+	bar=""
+	for i in $(seq 10); do
+		if [[ $vol_val -ge $i ]]; then
+			bar="$bar="
+		else
+			bar="$bar "
+		fi
+	done
+
+	echo "vol: $volume, $vol_val, [$bar]"
+}
+
+date_info() {
+	echo $(date +%d\ %B\ %Y\ %R:%S)
+}
+
+while true; do
+	status
+	# xsetroot -name "---$(status) | $(date_info)---"
+	sleep 1
+done
