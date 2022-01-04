@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# save current spread date and time
+int_save() {
+	echo $(date) > /home/$USER/.config/dwm/last-spread.dat
+}
+
 # check_missing "script1 script2 ..." "local_folder"
 check_missing() {
 	scripts=($1)
@@ -26,7 +31,7 @@ check_missing() {
 sudo echo ">> START"
 
 custom_scripts="sbar volume.sh refbar"
-autostart="dwm-autostart.sh"
+autostart="dwm-autostart.sh int-check"
 
 check_missing "$custom_scripts" "scripts"
 check_missing "$autostart" "autostart"
@@ -52,5 +57,7 @@ for script in $autostart; do
 	echo -e "\t\t>> Copying $script"
 	sudo cp autostart/$script /home/$USER/.config/dwm/$script
 done
+
+int_save
 
 echo ">> DONE!"
