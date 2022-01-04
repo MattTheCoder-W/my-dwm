@@ -8,7 +8,7 @@ WP="/home/m4t1/.local/share/wallpapers/wall.png"
 feh --bg-tile $WP --bg-fill $WP
 
 # Startup volume
-pactl set-sink-volume 0 50%
+pactl set-sink-volume 0 20%
 
 # Startup bar
 /usr/local/share/dwm/sbar &

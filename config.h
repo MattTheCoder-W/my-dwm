@@ -70,6 +70,8 @@ static const char *upvol[] = { "/usr/local/share/dwm/volume.sh", "up", NULL };
 static const char *downvol[] = { "/usr/local/share/dwm/volume.sh", "down", NULL };
 static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL };
 
+/* Print Screen - Flameshot */
+static const char *flameshot[] = { "/usr/bin/flameshot", "gui", NULL };
 
 #include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"
@@ -102,8 +104,8 @@ static Key keys[] = {
  	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
  	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,						XK_n,		shiftview,		{.i = +1} },
-	{ MODKEY,						XK_b,		shiftview,		{.i = -1} },
+	{ MODKEY,						XK_n,	   shiftview,	   {.i = +1 } },
+	{ MODKEY,						XK_b,	   shiftview,	   {.i = -1 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -113,10 +115,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {0} },
-	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
-	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ MODKEY|ShiftMask,             XK_Escape, quit,      	   {0} },
+	{ 0,              XF86XK_AudioLowerVolume, spawn, 		   {.v = downvol } },
+	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
+	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
+	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
 };
 
 /* button definitions */
