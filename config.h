@@ -74,7 +74,7 @@ static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL 
 static const char *flameshot[] = { "/usr/bin/flameshot", "gui", NULL };
 
 /* Restart autostart script - kill bar and start autostart */
-static const char *reconf[] = { "killall sbar", "&&", "/home/m4t1/.config/dwm/dwm-autostart.sh", NULL };
+static const char *reconf[] = { "/usr/local/share/dwm/reconf", NULL };
 
 #include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"

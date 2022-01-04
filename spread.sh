@@ -30,7 +30,7 @@ check_missing() {
 
 sudo echo ">> START"
 
-custom_scripts="sbar volume.sh refbar"
+custom_scripts="sbar volume.sh refbar reconf"
 autostart="dwm-autostart.sh int-check"
 
 check_missing "$custom_scripts" "scripts"
