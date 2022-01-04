@@ -1,35 +1,56 @@
 #!/bin/bash
 
+# check_missing "script1 script2 ..." "local_folder"
+check_missing() {
+	scripts=($1)
+	folder=$2
+	if [[ ! -d "$folder" ]]; then
+		echo ">> scripts directory not found! pull repo again!"
+		exit 1
+	fi
+	missing=0
+	for script in ${scripts[@]}; do
+		if [[ ! $(echo $(ls "$folder") | grep -w $script) ]]; then
+			echo ">> script $script not found! pull repo again!"
+			missing=1
+		fi
+	done
+	if [[ $missing -eq 1 ]]; then
+		echo ">> There are missing files in -> $folder"
+		exit 1
+	else
+		echo ">> No missing files in -> $folder"
+	fi
+}
+
 sudo echo ">> START"
 
-scripts="sbar volume.sh refbar"
-if [[ ! -d "scripts" ]]; then
-	echo ">> scripts directory not found! pull repo again!"
-	exit 1
-fi
-missing=0
-for script in $scripts; do
-	if [[ ! $(echo $(ls scripts/) | grep -w $script) ]]; then
-		echo ">> script $script not found! pull repo again!"
-		missing=1
+custom_scripts="sbar volume.sh refbar"
+autostart="dwm-autostart.sh"
+
+check_missing "$custom_scripts" "scripts"
+check_missing "$autostart" "autostart"
+
+dir="/usr/local/share/dwm /home/$USER/.config/dwm"
+for place in $dir; do
+	if [[ ! -d "$place" ]]; then
+		echo ">> Creating $place"
+		sudo mkdir -p $place
 	fi
 done
-if [[ $missing -eq 1 ]]; then
-	echo ">> There are missing scripts"
-	exit 1
-else
-	echo ">> No missing scripts"
-fi
 
-if [[ ! -d "/usr/local/share/dwm" ]]; then
-	echo ">> Creating /usr/local/share/dwm"
-	sudo mkdir /usr/local/share/dwm
-fi
+echo ">> Copying..."
 
-echo ">> Copying files"
-for script in $scripts; do
-	echo -e "\t>> Copying $script"
+echo -e "\t>> Copying scripts"
+for script in $custom_scripts; do
+	echo -e "\t\t>> Copying $script"
 	sudo cp scripts/$script /usr/local/share/dwm/$script
+done
+
+echo -e "\t>> Copying autostart files"
+for script in $autostart; do
+	echo -e "\t\t>> Copying $script"
+	sudo cp autostart/$script /home/$USER/.config/dwm/$script
 done
 
 echo ">> DONE!"
