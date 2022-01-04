@@ -42,10 +42,10 @@ status() {
 }
 
 date_info() {
-	echo $(date +%d\ %B\ \'%y\ %R:%S)
+	echo $(date +%d\ %B\ \'%y\ %R)
 }
 
 while true; do
 	xsetroot -name " $(status) $separator $(date_info) "
-	sleep 1
+	sleep 1m
 done
