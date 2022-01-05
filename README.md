@@ -9,3 +9,4 @@
 -  nstallation script for all custom scripts
 - Autostart script
 - My own status bar
+- Automatic monitor configuration for dual setup
