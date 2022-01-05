@@ -31,7 +31,7 @@ check_missing() {
 sudo echo ">> START"
 
 custom_scripts="sbar volume.sh refbar reconf"
-autostart="dwm-autostart.sh int-check"
+autostart="dwm-autostart.sh int-check rightvert.sh"
 
 check_missing "$custom_scripts" "scripts"
 check_missing "$autostart" "autostart"

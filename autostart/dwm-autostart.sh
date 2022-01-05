@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup dual monitor
-~/.screenlayout/rightvert.sh
+/home/$USER/.config/dwm/rightvert.sh
 
 # Set wallpaper
 WP_DIR="/home/m4t1/.local/share/wallpapers"
