@@ -55,7 +55,7 @@ done
 echo -e "\t>> Copying autostart files"
 for script in $autostart; do
 	echo -e "\t\t>> Copying $script"
-	sudo cp autostart/$script /home/$USER/.config/dwm/$script
+	cp autostart/$script /home/$USER/.config/dwm/$script
 done
 
 int_save
