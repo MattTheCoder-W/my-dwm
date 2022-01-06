@@ -15,6 +15,9 @@ pactl set-sink-volume 0 20%
 # Startup bar
 /usr/local/share/dwm/sbar &
 
+# Mount MegaNZ drive
+rclone mount Mega: /home/$USER/MegaNZ/ &
+
 # Transparency - WARNING - Transparency couses a big lag on my pc!
 # /usr/bin/picom -b
 
