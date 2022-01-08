@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTIMAL_TIME=2  # time between optimal spreads in days
+OPTIMAL_TIME=7  # time between optimal spreads in days
 
 # date_diff "date1" "date2"
 date_diff() {

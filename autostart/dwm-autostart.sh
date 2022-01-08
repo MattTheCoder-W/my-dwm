@@ -15,6 +15,9 @@ pactl set-sink-volume 0 20%
 # Startup bar
 /usr/local/share/dwm/sbar &
 
+# Flameshot deamon
+/usr/bin/flameshot &
+
 # Mount MegaNZ drive - uses a little bit of ram
 # rclone mount Mega: /home/$USER/MegaNZ/ &
 
