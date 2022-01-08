@@ -67,8 +67,12 @@ static const char *firefox[] = { "firefox", NULL };
 // static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 // static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 // static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-static const char *upvol[] = { "/usr/local/share/dwm/volume.sh", "up", NULL };
-static const char *downvol[] = { "/usr/local/share/dwm/volume.sh", "down", NULL };
+static const char *upvol[] = { "/usr/local/share/dwm/volume.sh", "small-up", NULL };
+static const char *downvol[] = { "/usr/local/share/dwm/volume.sh", "small-down", NULL };
+
+static const char *upvolbig[] = { "/usr/local/share/dwm/volume.sh", "up", NULL };
+static const char *downvolbig[] = { "/usr/local/share/dwm/volume.sh", "down", NULL };
+
 static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL };
 
 /* Print Screen - Flameshot */
@@ -120,8 +124,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,      	   {0} },
-	{ 0,              XF86XK_AudioLowerVolume, spawn, 		   {.v = downvol } },
-	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
+	{ 0,              XF86XK_AudioLowerVolume, spawn, 		   {.v = downvolbig } },
+	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevolbig } },
+	{ ShiftMask,      XF86XK_AudioLowerVolume, spawn, 		   {.v = downvol } },
+	{ ShiftMask,      XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
 	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
