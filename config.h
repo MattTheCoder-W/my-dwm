@@ -125,10 +125,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,      	   {0} },
 	{ 0,              XF86XK_AudioLowerVolume, spawn, 		   {.v = downvolbig } },
-	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevolbig } },
+	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
 	{ ShiftMask,      XF86XK_AudioLowerVolume, spawn, 		   {.v = downvol } },
-	{ ShiftMask,      XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
-	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
+	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvolbig } },
+	{ ShiftMask,      XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
 	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 	{ MODKEY,						XK_f,	   togglefullscr,  {0} },
