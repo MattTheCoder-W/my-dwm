@@ -81,6 +81,11 @@ static const char *flameshot[] = { "/usr/bin/flameshot", "gui", NULL };
 /* Restart autostart script - kill bar and start autostart */
 static const char *reconf[] = { "/usr/local/share/dwm/reconf", NULL };
 
+/* Media Keys */
+static const char *playpause[] = {"/usr/bin/playerctl", "play-pause", NULL};
+static const char *playnext[] = {"/usr/bin/playerctl", "next", NULL};
+static const char *playprev[] = {"/usr/bin/playerctl", "previous", NULL};
+
 #include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"
 static Key keys[] = {
@@ -129,6 +134,9 @@ static Key keys[] = {
 	{ ShiftMask,      XF86XK_AudioLowerVolume, spawn, 		   {.v = downvol } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvolbig } },
 	{ ShiftMask,      XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
+	{ 0,              XF86XK_AudioPlay, 	   spawn, 		   {.v = playpause } },
+	{ 0,              XF86XK_AudioNext, 	   spawn, 		   {.v = playnext } },
+	{ 0,              XF86XK_AudioPrev, 	   spawn, 		   {.v = playprev } },
 	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 	{ MODKEY,						XK_f,	   togglefullscr,  {0} },
