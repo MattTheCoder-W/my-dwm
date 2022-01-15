@@ -1,0 +1,7 @@
+firefox
+rxvt-unicode
+pactl
+flameshot-git
+playerctl
+NetworkManager
+feh
