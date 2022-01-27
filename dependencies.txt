@@ -1,7 +1,5 @@
 firefox
 rxvt-unicode
-pactl
-flameshot-git
+pulseaudio
 playerctl
-NetworkManager
 feh

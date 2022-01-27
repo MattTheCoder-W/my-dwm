@@ -60,8 +60,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char *termcmd[]  = { "/usr/bin/urxvt", NULL };
 static const char *firefox[] = { "firefox", NULL };
+
+static const char *exit_menu[] = { "/usr/local/share/dwm/exit_menu.sh", NULL };
 
 /* Volume control */
 // static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
@@ -140,6 +142,7 @@ static Key keys[] = {
 	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 	{ MODKEY,						XK_f,	   togglefullscr,  {0} },
+	{ MODKEY|ShiftMask,		XK_k,	   spawn,	   {.v = exit_menu} },
 };
 
 /* button definitions */

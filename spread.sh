@@ -28,9 +28,9 @@ check_missing() {
 	fi
 }
 
-sudo echo ">> START"
+doas echo ">> START"
 
-custom_scripts="sbar volume.sh refbar reconf"
+custom_scripts="sbar volume.sh refbar reconf exit_menu.sh"
 autostart="dwm-autostart.sh int-check rightvert.sh"
 
 check_missing "$custom_scripts" "scripts"
@@ -40,7 +40,7 @@ dir="/usr/local/share/dwm /home/$USER/.config/dwm"
 for place in $dir; do
 	if [[ ! -d "$place" ]]; then
 		echo ">> Creating $place"
-		sudo mkdir -p $place
+		doas mkdir -p $place
 	fi
 done
 
@@ -49,7 +49,7 @@ echo ">> Copying..."
 echo -e "\t>> Copying scripts"
 for script in $custom_scripts; do
 	echo -e "\t\t>> Copying $script"
-	sudo cp scripts/$script /usr/local/share/dwm/$script
+	doas cp scripts/$script /usr/local/share/dwm/$script
 done
 
 echo -e "\t>> Copying autostart files"
