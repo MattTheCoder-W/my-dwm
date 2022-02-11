@@ -40,7 +40,7 @@ dir="/usr/local/share/dwm /home/$USER/.config/dwm"
 for place in $dir; do
 	if [[ ! -d "$place" ]]; then
 		echo ">> Creating $place"
-		doas mkdir -p $place
+		sudo mkdir -p $place
 	fi
 done
 
@@ -49,7 +49,7 @@ echo ">> Copying..."
 echo -e "\t>> Copying scripts"
 for script in $custom_scripts; do
 	echo -e "\t\t>> Copying $script"
-	doas cp scripts/$script /usr/local/share/dwm/$script
+	sudo cp scripts/$script /usr/local/share/dwm/$script
 done
 
 echo -e "\t>> Copying autostart files"

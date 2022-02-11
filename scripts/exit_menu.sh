@@ -1,11 +1,14 @@
 #!/bin/bash
 
-options="cancel\nshutdown\nreboot\nsleep"
+shutdown_text="shutdown"
+reboot_text="reboot"
+sleep_text="sleep"
+options="cancel\n$shutdown_text\n$reboot_text\n$sleep_text"
 answ=$(echo -e $options | dmenu)
-if [[ "$answ" == "shutdown" ]]; then
+if [[ "$answ" == $shutdown_text ]]; then
 	shutdown now
-elif [[ "$answ" == "reboot" ]]; then
+elif [[ "$answ" == $reboot_text ]]; then
 	reboot
-elif [[ "$answ" == "sleep" ]]; then
+elif [[ "$answ" == $sleep_text ]]; then
 	systemctl suspend
 fi

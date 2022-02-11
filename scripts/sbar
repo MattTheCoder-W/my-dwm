@@ -3,37 +3,21 @@
 separator=""
 
 get_volume() {
-	state=$(awk -F"[][]" '/%/ { print $4 }' <(amixer sget Master) | head -n 1)
-	if [[ "$state" == "on" ]]; then
-		icon=""
-	else
-		icon=""
-	fi
-	volume=$(awk -F"[][]" '/%/ { print $2 }' <(amixer sget Master) | head -n 1)
-	vol_val=$(echo $volume | sed 's/%//g')
-	vol_val=$(($vol_val / 10))	
-
-	bar=""
-	for i in $(seq 10); do
-		if [[ $vol_val -ge $i ]]; then
-			bar="$bar="
-		else
-			bar="$bar "
-		fi
-	done
-
-	echo "$icon $volume [$bar]"
+	state=$(amixer sget Master | grep -oP '\[.*\]' | tr ' ' '\n' | tail -1 | sed 's/\(\[\|\]\)//g')
+	volume=$(amixer sget Master | grep -oP '\[.*\]' | tr ' ' '\n' | head -1 | sed 's/\(\[\|\]\)//g')
+	echo "audio=[$state $volume]"
 }
 
 get_network() {
 	is_connected=$(ping -c 1 1.1.1.1 &> /dev/null || echo not)
 	if [[ ! $(echo "$is_connected" | wc -c) -gt 2 ]]; then
-		name=$(nmcli device show | grep GENERAL.CONNECTION | head -n 1)
-		name=($name)
-		name=${name[1]}
-		echo " $name"
+		ipv6=$(curl -s https://www.whatismyip.com/ | grep -oP '<a id="(ipv6|ipv4)".*</a>' | grep -oP '">.*</a>' | sed -e 's/>/\n/g' -e 's/</\n/g' | head -2 | tail -1)
+		ipv4=$(curl -s ifconfig.me)
+		[[ $(($(echo -n $ipv6 | wc -c) + 0)) -gt 15 ]] && ipv6="on" || ipv6="off"
+		[[ $(($(echo -n $ipv4 | wc -c) + 0)) -gt 5 ]] && ipv4="on" || ipv4="off"
+		echo "net=[connected IPv6=$ipv6 IPv4=$ipv4]"
 	else
-		echo ""
+		echo "net=[disconnected]"
 	fi
 }
 

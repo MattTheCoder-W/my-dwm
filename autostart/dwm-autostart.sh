@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Setup dual monitor
-/home/$USER/.config/dwm/rightvert.sh
+# /home/$USER/.config/dwm/rightvert.sh
 
 # Set wallpaper
-WP_DIR="/home/m4t1/.local/share/wallpapers"
-LEFT="4k-wall.jpg"
-RIGHT="wall.png"
+WP_DIR="/home/${USER}/.config/dwm/wallpapers"
+LEFT="arc.jpg"
+RIGHT="arc.jpg"
 feh --bg-tile $WP_DIR/$LEFT --bg-fill $WP_DIR/$RIGHT
 
 # Startup volume
@@ -16,11 +16,5 @@ pactl set-sink-volume 0 20%
 /usr/local/share/dwm/sbar &
 
 # Flameshot deamon
-/usr/bin/flameshot &
-
-# Mount MegaNZ drive - uses a little bit of ram
-# rclone mount Mega: /home/$USER/MegaNZ/ &
-
-# Transparency - WARNING - Transparency couses a big lag on my pc!
-# /usr/bin/picom -b
+# /usr/bin/flameshot &
 

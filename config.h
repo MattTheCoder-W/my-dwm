@@ -88,6 +88,10 @@ static const char *playpause[] = {"/usr/bin/playerctl", "play-pause", NULL};
 static const char *playnext[] = {"/usr/bin/playerctl", "next", NULL};
 static const char *playprev[] = {"/usr/bin/playerctl", "previous", NULL};
 
+/* Other */
+static const char *change_wall[] = {"/home/m4t1/.config/dwm/change.sh", NULL};
+static const char *disable_screen[] = {"/home/m4t1/.config/dwm/disable-screen.sh", NULL};
+
 #include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"
 static Key keys[] = {
@@ -143,6 +147,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 	{ MODKEY,						XK_f,	   togglefullscr,  {0} },
 	{ MODKEY|ShiftMask,		XK_k,	   spawn,	   {.v = exit_menu} },
+	{ MODKEY|ShiftMask,		XK_a,	   spawn,	   {.v = change_wall} },
+	{ MODKEY|ShiftMask,		XK_p,	   spawn,	   {.v = disable_screen} },
 };
 
 /* button definitions */
