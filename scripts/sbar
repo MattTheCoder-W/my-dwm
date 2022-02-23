@@ -1,23 +1,39 @@
 #!/bin/bash
 
-separator=""
+separator="\\uf0da"
 
 get_volume() {
 	state=$(amixer sget Master | grep -oP '\[.*\]' | tr ' ' '\n' | tail -1 | sed 's/\(\[\|\]\)//g')
 	volume=$(amixer sget Master | grep -oP '\[.*\]' | tr ' ' '\n' | head -1 | sed 's/\(\[\|\]\)//g')
-	echo "audio=[$state $volume]"
+
+	if [[ "$state" == "on" ]]; then
+		echo "\\uf028 $volume"
+	else
+		echo "\\uf026 ---%"
+	fi
 }
 
 get_network() {
 	is_connected=$(ping -c 1 1.1.1.1 &> /dev/null || echo not)
 	if [[ ! $(echo "$is_connected" | wc -c) -gt 2 ]]; then
-		ipv6=$(curl -s https://www.whatismyip.com/ | grep -oP '<a id="(ipv6|ipv4)".*</a>' | grep -oP '">.*</a>' | sed -e 's/>/\n/g' -e 's/</\n/g' | head -2 | tail -1)
-		ipv4=$(curl -s ifconfig.me)
-		[[ $(($(echo -n $ipv6 | wc -c) + 0)) -gt 15 ]] && ipv6="on" || ipv6="off"
-		[[ $(($(echo -n $ipv4 | wc -c) + 0)) -gt 5 ]] && ipv4="on" || ipv4="off"
-		echo "net=[connected IPv6=$ipv6 IPv4=$ipv4]"
+		# ipv4=$(curl -s ifconfig.me)
+		# [[ $(($(echo -n $ipv4 | wc -c) + 0)) -gt 5 ]] && ipv4="on" || ipv4="off"
+		
+		# get speed
+		tr=$(( $(ifstat wlp3s0 | tail -2 | head -1 | tr -s '[:space:]' | cut -d\  -f8) + 0))
+		(( $tr == "126" )) && tr=0
+		rc=$(($(ifstat wlp3s0 | tail -2 | head -1 | tr -s '[:space:]' | cut -d\  -f6) + 0))
+		up_ico="\\uf093"
+		down_ico="\\uf019"
+
+		# Check VPN
+		vpn=""
+		vpn_procs=$(($(ps aux | grep openvpn | wc -l) + 0))
+		[[ $vpn_procs -gt 1 ]] && vpn="VPN "
+
+		echo "$vpn$down_ico $( printf %s $tr | numfmt --to=iec-i) $up_ico $( printf %s $rc | numfmt --to=iec-i)"  # Connected
 	else
-		echo "net=[disconnected]"
+		echo "\\uf069"  # Disconnected
 	fi
 }
 
@@ -30,8 +46,9 @@ date_info() {
 }
 
 while true; do
-	xsetroot -name " $(status) $separator $(date_info) "
+	xsetroot -name " $(echo -e $(status) $separator $(date_info)) "
 	now=$(date +%s)
 	to=$((($(($now/60)) + 1) * 60))
-	sleep $(($to - $now + 1))
+	# sleep $(($to - $now + 1))
+	sleep 2
 done
