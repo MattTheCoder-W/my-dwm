@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup dual monitor
-# /home/$USER/.config/dwm/rightvert.sh
+/home/$USER/.config/dwm/rightvert.sh
 
 # Set wallpaper
 WP_DIR="/home/${USER}/.config/dwm/wallpapers"
@@ -16,5 +16,5 @@ pactl set-sink-volume 0 20%
 /usr/local/share/dwm/sbar &
 
 # Flameshot deamon
-# /usr/bin/flameshot &
+/usr/bin/flameshot &
 

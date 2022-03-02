@@ -31,7 +31,7 @@ check_missing() {
 doas echo ">> START"
 
 custom_scripts="sbar volume.sh refbar reconf exit_menu.sh"
-autostart="dwm-autostart.sh int-check rightvert.sh"
+autostart="dwm-autostart.sh int-check rightvert.sh change.sh disable-screen.sh"
 
 check_missing "$custom_scripts" "scripts"
 check_missing "$autostart" "autostart"
