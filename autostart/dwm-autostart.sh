@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Setup dual monitor
-/home/$USER/.config/dwm/rightvert.sh
+# Setup xrandr monitor
+# xrandr --output OUTPUT --mode 1920x1080 -r 60
 
 # Set wallpaper
 WP_DIR="/home/${USER}/.config/dwm/wallpapers"
@@ -14,7 +14,4 @@ pactl set-sink-volume 0 20%
 
 # Startup bar
 /usr/local/share/dwm/sbar &
-
-# Flameshot deamon
-/usr/bin/flameshot &
 

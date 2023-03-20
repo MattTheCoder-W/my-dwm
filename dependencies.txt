@@ -1,5 +1,0 @@
-firefox
-rxvt-unicode
-pulseaudio
-playerctl
-feh

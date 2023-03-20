@@ -25,7 +25,7 @@ static const char *colors[][3]      = {
 static const char user[] = "m4t1";
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -68,12 +68,6 @@ static const char *dmenucmd[] = { "rofi", "-show", "run" };
 static const char *termcmd[]  = { "/usr/bin/urxvt", NULL };
 static const char *firefox[] = { "brave", NULL };
 
-static const char *exit_menu[] = { "/usr/local/share/dwm/exit_menu.sh", NULL };
-
-/* Volume control */
-// static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-// static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-// static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *upvol[] = { "/usr/local/share/dwm/volume.sh", "small-up", NULL };
 static const char *downvol[] = { "/usr/local/share/dwm/volume.sh", "small-down", NULL };
 
@@ -85,9 +79,6 @@ static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL 
 /* Brightness control */
 static const char *brightup[] = { "/home/m4t1/.local/bin/dwm/brightness", "up", NULL };
 static const char *brightdown[] = { "/home/m4t1/.local/bin/dwm/brightness", "down", NULL };
-
-/* Print Screen - Flameshot */
-static const char *flameshot[] = { "/usr/bin/flameshot", "gui", NULL };
 
 /* Restart autostart script - kill bar and start autostart */
 static const char *reconf[] = { "/usr/local/share/dwm/reconf", NULL };
@@ -150,10 +141,8 @@ static Key keys[] = {
 	{ 0,              XF86XK_AudioPlay, 	   spawn, 		   {.v = playpause } },
 	{ 0,              XF86XK_AudioNext, 	   spawn, 		   {.v = playnext } },
 	{ 0,              XF86XK_AudioPrev, 	   spawn, 		   {.v = playprev } },
-	{ 0,							XK_Print,  spawn,	   	   {.v = flameshot } },
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 	{ MODKEY,						XK_f,	   togglefullscr,  {0} },
-	{ MODKEY|ShiftMask,		XK_k,	   spawn,	   {.v = exit_menu} },
 };
 
 /* button definitions */
