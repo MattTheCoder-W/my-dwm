@@ -1,6 +1,2 @@
 #!/bin/bash
-
-killall sbar
-
-/home/$USER/.config/dwm/dwm-autostart.sh
-
+killall sbar; /home/$USER/.local/dwm/autostart.sh

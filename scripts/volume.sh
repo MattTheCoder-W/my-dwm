@@ -14,22 +14,22 @@ if [[ "$action" == "up" ]]; then
 	if [[ $(get_vol) -gt 100 ]]; then
 		/usr/bin/pactl set-sink-volume $sink 100%
 	else
-		/usr/local/share/dwm/refbar
+		/home/$USER/.local/dwm/refbar
 	fi
 elif [[ "$action" == "small-up" ]]; then
 	/usr/bin/pactl set-sink-volume $sink +1%
 	if [[ $(get_vol) -gt 100 ]]; then
 		/usr/bin/pactl set-sink-volume $sink 100%
 	else
-		/usr/local/share/dwm/refbar
+		/home/$USER/.local/dwm/refbar
 	fi
 elif [[ "$action" == "down" ]]; then
 	/usr/bin/pactl set-sink-volume $sink -5%
-	/usr/local/share/dwm/refbar
+	/home/$USER/.local/dwm/refbar
 elif [[ "$action" == "small-down" ]]; then
 	/usr/bin/pactl set-sink-volume $sink -1%
-	/usr/local/share/dwm/refbar
+	/home/$USER/.local/dwm/refbar
 elif [[ "$action" == "mute" ]]; then
 	/usr/bin/pactl set-sink-mute $sink toggle
-	/usr/local/share/dwm/refbar
+	/home/$USER/.local/dwm/refbar
 fi

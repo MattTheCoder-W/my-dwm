@@ -68,25 +68,16 @@ static const char *dmenucmd[] = { "rofi", "-show", "run" };
 static const char *termcmd[]  = { "/usr/bin/urxvt", NULL };
 static const char *firefox[] = { "brave", NULL };
 
-static const char *upvol[] = { "/usr/local/share/dwm/volume.sh", "small-up", NULL };
-static const char *downvol[] = { "/usr/local/share/dwm/volume.sh", "small-down", NULL };
+static const char *upvol[] = { "/home/m4t1/.local/dwm/volume.sh", "small-up", NULL };
+static const char *downvol[] = { "/home/m4t1/.local/dwm/volume.sh", "small-down", NULL };
 
-static const char *upvolbig[] = { "/usr/local/share/dwm/volume.sh", "up", NULL };
-static const char *downvolbig[] = { "/usr/local/share/dwm/volume.sh", "down", NULL };
+static const char *upvolbig[] = { "/home/m4t1/.local/dwm/volume.sh", "up", NULL };
+static const char *downvolbig[] = { "/home/m4t1/.local/dwm/volume.sh", "down", NULL };
 
-static const char *mutevol[] = { "/usr/local/share/dwm/volume.sh", "mute", NULL };
-
-/* Brightness control */
-static const char *brightup[] = { "/home/m4t1/.local/bin/dwm/brightness", "up", NULL };
-static const char *brightdown[] = { "/home/m4t1/.local/bin/dwm/brightness", "down", NULL };
+static const char *mutevol[] = { "/home/m4t1/.local/dwm/volume.sh", "mute", NULL };
 
 /* Restart autostart script - kill bar and start autostart */
-static const char *reconf[] = { "/usr/local/share/dwm/reconf", NULL };
-
-/* Media Keys */
-static const char *playpause[] = {"/usr/bin/playerctl", "play-pause", NULL};
-static const char *playnext[] = {"/usr/bin/playerctl", "next", NULL};
-static const char *playprev[] = {"/usr/bin/playerctl", "previous", NULL};
+static const char *reconf[] = { "/home/m4t1/.local/dwm/reconf", NULL };
 
 #include <X11/XF86keysym.h>  // Volume buttons
 #include "shiftview.c"
@@ -131,16 +122,11 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,      	   {0} },
-    { MODKEY,         XF86XK_AudioRaiseVolume, spawn,          {.v = brightup} },
-    { MODKEY,         XF86XK_AudioLowerVolume, spawn,          {.v = brightdown} },
 	{ 0,              XF86XK_AudioLowerVolume, spawn, 		   {.v = downvolbig } },
 	{ 0,              XF86XK_AudioMute, 	   spawn, 		   {.v = mutevol } },
 	{ ShiftMask,      XF86XK_AudioLowerVolume, spawn, 		   {.v = downvol } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvolbig } },
 	{ ShiftMask,      XF86XK_AudioRaiseVolume, spawn, 		   {.v = upvol } },
-	{ 0,              XF86XK_AudioPlay, 	   spawn, 		   {.v = playpause } },
-	{ 0,              XF86XK_AudioNext, 	   spawn, 		   {.v = playnext } },
-	{ 0,              XF86XK_AudioPrev, 	   spawn, 		   {.v = playprev } },
 	{ MODKEY|ShiftMask,				XK_r,	   spawn,		   {.v = reconf } },
 	{ MODKEY,						XK_f,	   togglefullscr,  {0} },
 };
